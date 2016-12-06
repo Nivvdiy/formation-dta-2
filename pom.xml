@@ -4,7 +4,7 @@
 	<artifactId>Pizzeria-app</artifactId>
 	<packaging>pom</packaging>
 	<name>Pizzeria-Multimodule</name>
-	<version>0.1.0</version>
+	<version>1.0.0</version>
 	<groupId>DTA</groupId>
 	<modules>
 		<module>Pizzeria-model</module>
