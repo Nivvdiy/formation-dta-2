@@ -6,8 +6,8 @@ public class RemovePizzaException extends DaoException {
 	 * 
 	 */
 	private static final long serialVersionUID = 3956558458992669857L;
-	private int lastIndex;
-	private int indexPizza;
+	private final int lastIndex;
+	private final int indexPizza;
 
 	public RemovePizzaException (int indexPizza, int lastIndex) {
 		this.indexPizza = indexPizza;

@@ -10,11 +10,11 @@ import fr.pizzeria.model.Pizza.Category;
 
 public abstract class IWRDao {
 
+	private List<String> lines;
+
 	protected abstract void write() throws SaveMemoriePizzaException;
 
 	protected abstract void read() throws LoadMemoriePizzaException;
-
-	private List<String> lines;
 
 	public List<String> getAllLines() {
 		return lines;
@@ -37,7 +37,7 @@ public abstract class IWRDao {
 	}
 
 	public List<Pizza> toPizzaList() {
-		List<Pizza> pizzas = new ArrayList<Pizza>();
+		List<Pizza> pizzas = new ArrayList<>();
 		for (String line : getLines()) {
 			String[] temp = line.split(";");
 			pizzas.add(new Pizza(temp[0], temp[1], Double.parseDouble(temp[2]), Category.parseCategory(temp[3]), true));
@@ -46,7 +46,7 @@ public abstract class IWRDao {
 	}
 
 	public static List<String> toStringList(List<Pizza> list) {
-		List<String> temps = new ArrayList<String>();
+		List<String> temps = new ArrayList<>();
 		for (Pizza pizza : list) {
 			temps.add(pizza.getCode() + ";" + pizza.getName() + ";" + pizza.getPrice() + ";"
 					+ pizza.getCategory().toString());

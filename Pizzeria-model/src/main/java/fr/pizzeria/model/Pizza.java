@@ -10,7 +10,7 @@ public class Pizza {
 	public enum Category {
 		VIANDE("Viande"), POISSON("Poisson"), VEGETARIENNE("Végétarienne"), SANS_VIANDE("Sans viande");
 		private String content;
-		private static Map<String, Category> catList = new HashMap<String, Category>();
+		private static Map<String, Category> catList = new HashMap<>();
 		static {
 			catList.put("VIANDE", VIANDE);
 			catList.put("POISSON", POISSON);
@@ -18,12 +18,12 @@ public class Pizza {
 			catList.put("SANS_VIANDE", SANS_VIANDE);
 		}
 
-		public String getContent() {
-			return content;
-		}
-
 		private Category(String content) {
 			this.content = content;
+		}
+
+		public String getContent() {
+			return content;
 		}
 
 		public static Category parseCategory(String cat) {
@@ -36,9 +36,21 @@ public class Pizza {
 	}
 
 	private static int nbPizza;
-	private String code, name;
+	private String code;
+	private String name;
 	private double price;
 	private Category category;
+
+	public Pizza(String code, String name, double price, Category category, boolean increment) {
+		super();
+		if (increment) {
+			addPizza();
+		}
+		this.code = code;
+		this.name = name;
+		this.price = price;
+		this.category = category;
+	}
 
 	public Category getCategory() {
 		return category;
@@ -82,17 +94,6 @@ public class Pizza {
 
 	public void setPrice(double price) {
 		this.price = price;
-	}
-
-	public Pizza(String code, String name, double price, Category category, boolean increment) {
-		super();
-		if (increment) {
-			addPizza();
-		}
-		this.code = code;
-		this.name = name;
-		this.price = price;
-		this.category = category;
 	}
 
 	@Override

@@ -8,9 +8,9 @@ public class UpdatePizzaException extends DaoException {
 	 * 
 	 */
 	private static final long serialVersionUID = 8702769028656955569L;
-	private int indexPizza;
-	private Pizza pizza;
-	private int lastIndex;
+	private final int indexPizza;
+	private final Pizza pizza;
+	private final int lastIndex;
 
 	public UpdatePizzaException(int indexPizza, Pizza pizza, int lastIndex) {
 		this.indexPizza = indexPizza;

@@ -10,8 +10,10 @@ import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.ihm.MainMenu;
 
 public class PizzeriaAdminConsoleApp {
+	
+	private PizzeriaAdminConsoleApp(){}
 
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException{
 
 		ResourceBundle bundle = ResourceBundle.getBundle("app");
 		String conf = bundle.getString("dao.impl");

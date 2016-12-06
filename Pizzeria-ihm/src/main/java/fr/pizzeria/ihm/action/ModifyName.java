@@ -20,7 +20,6 @@ public final class ModifyName extends Modify {
 		try {
 			ihmUtil.getIPizzaDao().updatePizza(option, pizza);
 		} catch (UpdatePizzaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

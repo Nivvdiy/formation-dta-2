@@ -2,6 +2,8 @@ package fr.pizzeria.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import fr.pizzeria.exception.LoadMemoriePizzaException;
 import fr.pizzeria.exception.RemovePizzaException;
@@ -12,7 +14,8 @@ import fr.pizzeria.model.Pizza;
 
 public abstract class IPizzaDao {
 
-	private List<Pizza> pizzas = new ArrayList<Pizza>();
+	private List<Pizza> pizzas = new ArrayList<>();
+	private static Logger logger = Logger.getAnonymousLogger();
 
 	private IWRDao iWRDao;
 
@@ -25,8 +28,7 @@ public abstract class IPizzaDao {
 			iWRDao.read();
 			pizzas = iWRDao.toPizzaList();
 		} catch (LoadMemoriePizzaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.WARNING, e, null);
 		}
 	}
 
@@ -34,8 +36,7 @@ public abstract class IPizzaDao {
 		try {
 			iWRDao.write();
 		} catch (SaveMemoriePizzaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.WARNING, e, null);
 		}
 	}
 
@@ -51,7 +52,7 @@ public abstract class IPizzaDao {
 	}
 
 	public void updatePizza(int codePizza, Pizza pizza) throws UpdatePizzaException {
-		if (!isValid(pizza) & !isValid(codePizza)) {
+		if (!isValid(pizza) && !isValid(codePizza)) {
 			throw new UpdatePizzaException(codePizza, pizza, getNbPizza());
 		}
 		pizzas.set(codePizza - 1, pizza);
@@ -70,7 +71,7 @@ public abstract class IPizzaDao {
 	}
 
 	private boolean isValid(Pizza pizza) {
-		return pizza != null & pizza.getCode().length() == 3 & pizza.getName().length() > 0 & pizza.getPrice() > 0;
+		return pizza != null | pizza.getCode().length() == 3 & pizza.getName().length() > 0 & pizza.getPrice() > 0;
 	}
 
 	public int getNbPizza() {

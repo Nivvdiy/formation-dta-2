@@ -23,8 +23,4 @@ public abstract class DaoException extends Exception {
 		super(message, cause);
 	}
 
-	public String getMessage(){
-		return super.getMessage();
-	}
-
 }

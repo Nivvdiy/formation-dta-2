@@ -31,7 +31,6 @@ public final class ModifyPrice extends Modify {
 		try {
 			ihmUtil.getIPizzaDao().updatePizza(option, pizza);
 		} catch (UpdatePizzaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

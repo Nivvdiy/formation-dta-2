@@ -47,7 +47,6 @@ public class RemovePizza extends Action {
 			try {
 				ihmUtil.getIPizzaDao().removePizza(option);
 			} catch (RemovePizzaException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println("Pizza " + deletedPizza.getName() + " supprimer avec succès");

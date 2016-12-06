@@ -38,7 +38,7 @@ public class AddPizza extends Action {
 
 		}
 		System.out.println("Veuillez saisir le numéro de la catégorie");
-		Map<Integer, String> catList = new HashMap<Integer, String>();
+		Map<Integer, String> catList = new HashMap<>();
 		Category.getCatList().forEach((catText, catName) -> catList.put(catList.size() + 1, catText));
 		catList.forEach(
 				(ind, catText) -> System.out.println(ind + ". " + Category.getCatList().get(catText).getContent()));

@@ -10,7 +10,7 @@ public class TabWR extends IWRDao {
 	private List<String> pizzaStrList;
 
 	public TabWR() {
-		this.pizzaStrList = new ArrayList<String>();
+		this.pizzaStrList = new ArrayList<>();
 		pizzaStrList.add("MAR;Margarita;15.7;VIANDE");
 		pizzaStrList.add("POV;Poivrons;14.3;VEGETARIENNE");
 		pizzaStrList.add("ROM;Roma;14.8;VIANDE");

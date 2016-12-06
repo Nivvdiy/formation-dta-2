@@ -22,11 +22,8 @@ public class FileWR extends IWRDao {
 	public void write() {
 
 		try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(Paths.get(filePath)))) {
-			getLines().forEach((str) -> {
-				pw.println(str);
-			});
+			getLines().forEach((str) -> pw.println(str));
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
