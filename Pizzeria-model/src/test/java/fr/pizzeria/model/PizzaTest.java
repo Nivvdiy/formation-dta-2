@@ -20,7 +20,7 @@ public class PizzaTest {
 			pizzas.add(new Pizza("MAR", "Margharita", (i + 1) * 4.4, cat.get((int) ((Math.random() * 4))), true));
 			System.out.println(pizzas.get(i).getCategory());
 		}
-		assertEquals(pizzas.size()+4, Pizza.getNbPizza());
+		assertEquals(pizzas.size(), Pizza.getNbPizza());
 	}
 
 }
