@@ -3,25 +3,25 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>DTA</groupId>
-		<artifactId>Pizzeria-app</artifactId>
-		<version>0.0.1-Dev</version>
+		<artifactId>Jeffrey-pizzeria-app</artifactId>
 		<relativePath>../pom.xml</relativePath>
+		<version>1.0.0</version>
 	</parent>
-	<artifactId>Pizzeria-console</artifactId>
+	<artifactId>Jeffrey-pizzeria-console</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>Pizzeria-ihm</artifactId>
+			<artifactId>Jeffrey-pizzeria-ihm</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>Pizzeria-model</artifactId>
+			<artifactId>Jeffrey-pizzeria-model</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>Pizzeria-dao</artifactId>
+			<artifactId>Jeffrey-pizzeria-dao</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 	</dependencies>

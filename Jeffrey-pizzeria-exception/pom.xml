@@ -2,15 +2,15 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>DTA</groupId>
-    <artifactId>Pizzeria-app</artifactId>
-    <version>0.0.1-Dev</version>
+    <artifactId>Jeffrey-pizzeria-app</artifactId>
+    <version>1.0.0</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <artifactId>Pizzeria-exception</artifactId>
+  <artifactId>Jeffrey-pizzeria-exception</artifactId>
   <dependencies>
   	<dependency>
   		<groupId>${project.parent.groupId}</groupId>
-  		<artifactId>Pizzeria-model</artifactId>
+  		<artifactId>Jeffrey-pizzeria-model</artifactId>
   		<version>${project.parent.version}</version>
   	</dependency>
   </dependencies>

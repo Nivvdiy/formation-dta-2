@@ -1,17 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>Pizzeria-app</artifactId>
+	<artifactId>Jeffrey-pizzeria-app</artifactId>
 	<packaging>pom</packaging>
 	<name>Pizzeria-Multimodule</name>
 	<version>1.0.0</version>
 	<groupId>DTA</groupId>
 	<modules>
-		<module>Pizzeria-model</module>
-		<module>Pizzeria-dao</module>
-		<module>Pizzeria-console</module>
-		<module>Pizzeria-exception</module>
-		<module>Pizzeria-ihm</module>
+		<module>Jeffrey-pizzeria-model</module>
+		<module>Jeffrey-pizzeria-dao</module>
+		<module>Jeffrey-pizzeria-console</module>
+		<module>Jeffrey-pizzeria-exception</module>
+		<module>Jeffrey-pizzeria-ihm</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>

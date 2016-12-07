@@ -2,11 +2,11 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>DTA</groupId>
-    <artifactId>Pizzeria-app</artifactId>
-    <version>0.0.1-Dev</version>
+    <artifactId>Jeffrey-pizzeria-app</artifactId>
+    <version>1.0.0</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <artifactId>Pizzeria-model</artifactId>
+  <artifactId>Jeffrey-pizzeria-model</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
