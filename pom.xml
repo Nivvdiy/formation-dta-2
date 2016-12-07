@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>Jeffrey-pizzeria-app</artifactId>
 	<packaging>pom</packaging>
-	<name>Pizzeria-Multimodule</name>
+	<name>Jeffrey-pizzeria-app</name>
 	<version>1.0.0</version>
 	<groupId>DTA</groupId>
 	<modules>
