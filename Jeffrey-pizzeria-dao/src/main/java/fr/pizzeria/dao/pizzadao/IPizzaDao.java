@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import fr.pizzeria.dao.wrdao.IWRDao;
-import fr.pizzeria.dao.wrdao.MySQLWR;
 import fr.pizzeria.exception.PizzaException;
 import fr.pizzeria.exception.RemovePizzaException;
 import fr.pizzeria.exception.SavePizzaException;
@@ -27,7 +26,7 @@ public abstract class IPizzaDao {
 			iWRDao.read();
 			pizzas = iWRDao.toPizzaList();
 		} catch (PizzaException e) {
-			Logger.getLogger(MySQLWR.class.getName()).severe(e.getMessage());
+			Logger.getLogger(IPizzaDao.class.getName()).severe(e.getMessage());
 			throw new PizzaException(e);
 		}
 	}
@@ -36,7 +35,7 @@ public abstract class IPizzaDao {
 		try {
 			iWRDao.write();
 		} catch (PizzaException e) {
-			Logger.getLogger(MySQLWR.class.getName()).severe(e.getMessage());
+			Logger.getLogger(IPizzaDao.class.getName()).severe(e.getMessage());
 			throw new PizzaException(e);
 		}
 	}

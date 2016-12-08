@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 
 import fr.pizzeria.dao.pizzadao.IPizzaDao;
 import fr.pizzeria.dao.wrdao.FileWR;
-import fr.pizzeria.dao.wrdao.MySQLWR;
 import fr.pizzeria.exception.PizzaException;
 import fr.pizzeria.model.Pizza;
 
@@ -60,7 +59,7 @@ public class IhmUtil {
 		try {
 			iPizzaDao.loadPizzas();
 		} catch (PizzaException e) {
-			Logger.getLogger(MySQLWR.class.getName()).severe(e.getMessage());
+			Logger.getLogger(IhmUtil.class.getName()).severe(e.getMessage());
 		}
 	}
 
@@ -69,7 +68,7 @@ public class IhmUtil {
 		try {
 			iPizzaDao.savePizzas();
 		} catch (PizzaException e) {
-			Logger.getLogger(MySQLWR.class.getName()).severe(e.getMessage());
+			Logger.getLogger(IhmUtil.class.getName()).severe(e.getMessage());
 		}
 	}
 

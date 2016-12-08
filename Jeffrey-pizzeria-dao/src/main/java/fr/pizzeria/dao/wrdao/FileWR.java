@@ -13,7 +13,7 @@ public class FileWR extends IWRDao {
 	private String filePath;
 
 	public FileWR(String filePath) {
-		this.filePath = "../"+filePath;
+		this.filePath = "../" + filePath;
 		this.setLines(new ArrayList<String>());
 	}
 
@@ -23,7 +23,7 @@ public class FileWR extends IWRDao {
 		try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(Paths.get(filePath)))) {
 			getLines().forEach((str) -> pw.println(str));
 		} catch (IOException e) {
-			Logger.getLogger(MySQLWR.class.getName()).severe(e.getMessage());
+			Logger.getLogger(FileWR.class.getName()).severe(e.getMessage());
 		}
 	}
 
@@ -33,7 +33,7 @@ public class FileWR extends IWRDao {
 			stream.forEach((str) -> super.addLine(str));
 
 		} catch (IOException e) {
-			Logger.getLogger(MySQLWR.class.getName()).severe(e.getMessage());
+			Logger.getLogger(FileWR.class.getName()).severe(e.getMessage());
 		}
 	}
 

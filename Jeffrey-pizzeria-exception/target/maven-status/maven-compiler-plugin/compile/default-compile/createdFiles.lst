@@ -1,0 +1,7 @@
+fr\pizzeria\exception\UpdatePizzaException.class
+fr\pizzeria\exception\RemovePizzaException.class
+fr\pizzeria\exception\SaveMemoriePizzaException.class
+fr\pizzeria\exception\DaoException.class
+fr\pizzeria\exception\SavePizzaException.class
+fr\pizzeria\exception\LoadMemoriePizzaException.class
+fr\pizzeria\exception\PizzaException.class

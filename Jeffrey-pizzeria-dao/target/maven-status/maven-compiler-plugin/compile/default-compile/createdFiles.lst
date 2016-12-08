@@ -1,0 +1,10 @@
+fr\pizzeria\dao\wrdao\DBDAO.class
+fr\pizzeria\dao\pizzadao\IPizzaDao.class
+fr\pizzeria\dao\wrdao\FileWR.class
+fr\pizzeria\dao\wrdao\IWRDao.class
+fr\pizzeria\dao\wrdao\MySQLWR.class
+fr\pizzeria\dao\pizzadao\PizzaDaoMySQL.class
+fr\pizzeria\dao\wrdao\MySQLWR$IRunSql.class
+fr\pizzeria\dao\pizzadao\PizzaDaoFile.class
+fr\pizzeria\dao\pizzadao\PizzaDaoTab.class
+fr\pizzeria\dao\wrdao\TabWR.class
