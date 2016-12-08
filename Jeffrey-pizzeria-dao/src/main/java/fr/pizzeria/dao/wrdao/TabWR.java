@@ -1,9 +1,7 @@
-package fr.pizzeria.dao.tab;
+package fr.pizzeria.dao.wrdao;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import fr.pizzeria.dao.IWRDao;
 
 public class TabWR extends IWRDao {
 

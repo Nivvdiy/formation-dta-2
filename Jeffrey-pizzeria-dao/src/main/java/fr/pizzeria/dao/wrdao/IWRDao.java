@@ -1,20 +1,19 @@
-package fr.pizzeria.dao;
+package fr.pizzeria.dao.wrdao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.pizzeria.exception.LoadMemoriePizzaException;
-import fr.pizzeria.exception.SaveMemoriePizzaException;
+import fr.pizzeria.exception.PizzaException;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.Pizza.Category;
 
 public abstract class IWRDao {
 
-	private List<String> lines;
+	private List<String> lines;		
 
-	protected abstract void write() throws SaveMemoriePizzaException;
+	public abstract void write() throws PizzaException;
 
-	protected abstract void read() throws LoadMemoriePizzaException;
+	public abstract void read() throws PizzaException;
 
 	public List<String> getAllLines() {
 		return lines;

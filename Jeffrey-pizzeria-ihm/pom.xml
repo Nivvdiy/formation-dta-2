@@ -11,7 +11,6 @@
   	<dependency>
   		<groupId>${project.parent.groupId}</groupId>
   		<artifactId>Jeffrey-pizzeria-dao</artifactId>
-  		<version>${project.parent.version}</version>
   	</dependency>
   </dependencies>
 </project>

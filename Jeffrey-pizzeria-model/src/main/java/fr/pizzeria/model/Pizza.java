@@ -97,6 +97,11 @@ public class Pizza {
 	}
 
 	@Override
+	public String toString() {
+		return code + ";" + name + ";" + price + ";" + category;
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;

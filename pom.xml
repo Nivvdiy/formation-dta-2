@@ -20,6 +20,31 @@
 				<artifactId>commons-lang3</artifactId>
 				<version>3.5</version>
 			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>Jeffrey-pizzeria-console</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>Jeffrey-pizzeria-dao</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>Jeffrey-pizzeria-exception</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>Jeffrey-pizzeria-ihm</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>Jeffrey-pizzeria-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<properties>
@@ -32,14 +57,21 @@
 		<profile>
 			<id>dev</id>
 			<properties>
-				<dao.impl>fr.pizzeria.dao.file.PizzaDaoFile</dao.impl>
+				<dao.impl>fr.pizzeria.dao.pizzadao.PizzaDaoFile</dao.impl>
 				<dao.file>pizzas.txt</dao.file>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev-mysql</id>
+			<properties>
+				<dao.impl>fr.pizzeria.dao.pizzadao.PizzaDaoMySQL</dao.impl>
+				<dao.file></dao.file>
 			</properties>
 		</profile>
 		<profile>
 			<id>prod</id>
 			<properties>
-				<dao.impl>fr.pizzeria.dao.tab.PizzaDaoTab</dao.impl>
+				<dao.impl>fr.pizzeria.dao.pizzadao.PizzaDaoTab</dao.impl>
 				<dao.file></dao.file>
 			</properties>
 		</profile>

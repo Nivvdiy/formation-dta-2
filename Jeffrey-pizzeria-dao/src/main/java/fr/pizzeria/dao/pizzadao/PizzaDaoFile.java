@@ -1,6 +1,6 @@
-package fr.pizzeria.dao.file;
+package fr.pizzeria.dao.pizzadao;
 
-import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.dao.wrdao.FileWR;
 
 public class PizzaDaoFile extends IPizzaDao {
 

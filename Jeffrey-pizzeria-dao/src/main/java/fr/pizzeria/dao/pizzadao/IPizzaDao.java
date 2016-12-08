@@ -1,13 +1,13 @@
-package fr.pizzeria.dao;
+package fr.pizzeria.dao.pizzadao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import fr.pizzeria.exception.LoadMemoriePizzaException;
+import fr.pizzeria.dao.wrdao.IWRDao;
+import fr.pizzeria.dao.wrdao.MySQLWR;
+import fr.pizzeria.exception.PizzaException;
 import fr.pizzeria.exception.RemovePizzaException;
-import fr.pizzeria.exception.SaveMemoriePizzaException;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.Pizza;
@@ -15,7 +15,6 @@ import fr.pizzeria.model.Pizza;
 public abstract class IPizzaDao {
 
 	private List<Pizza> pizzas = new ArrayList<>();
-	private static Logger logger = Logger.getAnonymousLogger();
 
 	private IWRDao iWRDao;
 
@@ -23,20 +22,22 @@ public abstract class IPizzaDao {
 		this.iWRDao = iWRDao;
 	}
 
-	public void loadPizzas() {
+	public void loadPizzas() throws PizzaException {
 		try {
 			iWRDao.read();
 			pizzas = iWRDao.toPizzaList();
-		} catch (LoadMemoriePizzaException e) {
-			logger.log(Level.WARNING, e, null);
+		} catch (PizzaException e) {
+			Logger.getLogger(MySQLWR.class.getName()).severe(e.getMessage());
+			throw new PizzaException(e);
 		}
 	}
 
-	public void savePizzas() {
+	public void savePizzas() throws PizzaException {
 		try {
 			iWRDao.write();
-		} catch (SaveMemoriePizzaException e) {
-			logger.log(Level.WARNING, e, null);
+		} catch (PizzaException e) {
+			Logger.getLogger(MySQLWR.class.getName()).severe(e.getMessage());
+			throw new PizzaException(e);
 		}
 	}
 

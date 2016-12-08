@@ -1,9 +1,12 @@
 package fr.pizzeria.ihm;
 
 import java.util.Scanner;
+import java.util.logging.Logger;
 
-import fr.pizzeria.dao.IPizzaDao;
-import fr.pizzeria.dao.file.FileWR;
+import fr.pizzeria.dao.pizzadao.IPizzaDao;
+import fr.pizzeria.dao.wrdao.FileWR;
+import fr.pizzeria.dao.wrdao.MySQLWR;
+import fr.pizzeria.exception.PizzaException;
 import fr.pizzeria.model.Pizza;
 
 public class IhmUtil {
@@ -54,12 +57,20 @@ public class IhmUtil {
 	}
 
 	public void initialize() {
-		iPizzaDao.loadPizzas();
+		try {
+			iPizzaDao.loadPizzas();
+		} catch (PizzaException e) {
+			Logger.getLogger(MySQLWR.class.getName()).severe(e.getMessage());
+		}
 	}
 
 	public void savePizzaFile() {
 		iPizzaDao.getIWRDao().setAllLines(FileWR.toStringList(iPizzaDao.findAllPizzas()));
-		iPizzaDao.savePizzas();
+		try {
+			iPizzaDao.savePizzas();
+		} catch (PizzaException e) {
+			Logger.getLogger(MySQLWR.class.getName()).severe(e.getMessage());
+		}
 	}
 
 }

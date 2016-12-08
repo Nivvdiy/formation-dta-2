@@ -4,8 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-import fr.pizzeria.dao.IPizzaDao;
-import fr.pizzeria.dao.tab.PizzaDaoTab;
+import fr.pizzeria.dao.pizzadao.IPizzaDao;
+import fr.pizzeria.dao.pizzadao.PizzaDaoFile;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.ihm.MainMenu;
 
@@ -20,11 +20,11 @@ public class PizzeriaAdminConsoleApp {
 		String memFile;
 
 		IPizzaDao pizzaDao;
-		if(Class.forName(conf) == PizzaDaoTab.class){
-			pizzaDao = (IPizzaDao) Class.forName(conf).newInstance();
-		} else {
+		if(Class.forName(conf) == PizzaDaoFile.class){
 			memFile = bundle.getString("file");
 			pizzaDao = (IPizzaDao) Class.forName(conf).getDeclaredConstructor(String.class).newInstance(memFile);
+		} else {
+			pizzaDao = (IPizzaDao) Class.forName(conf).newInstance();
 		}
 		
 		System.out.println(conf+" => "+Class.forName(conf));

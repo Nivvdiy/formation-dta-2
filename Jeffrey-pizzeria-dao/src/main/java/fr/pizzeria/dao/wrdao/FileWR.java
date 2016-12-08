@@ -1,13 +1,12 @@
-package fr.pizzeria.dao.file;
+package fr.pizzeria.dao.wrdao;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
-
-import fr.pizzeria.dao.IWRDao;
 
 public class FileWR extends IWRDao {
 
@@ -23,8 +22,8 @@ public class FileWR extends IWRDao {
 
 		try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(Paths.get(filePath)))) {
 			getLines().forEach((str) -> pw.println(str));
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (IOException e) {
+			Logger.getLogger(MySQLWR.class.getName()).severe(e.getMessage());
 		}
 	}
 
@@ -34,7 +33,7 @@ public class FileWR extends IWRDao {
 			stream.forEach((str) -> super.addLine(str));
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			Logger.getLogger(MySQLWR.class.getName()).severe(e.getMessage());
 		}
 	}
 
