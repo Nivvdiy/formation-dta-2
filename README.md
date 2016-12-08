@@ -1,2 +1,2 @@
-# formation-dta-2
-Depot utilisé pour le TP en cours
+# TP Pizzeria
+Projet codé en Java avec maven sous spring tool suite
