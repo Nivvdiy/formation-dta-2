@@ -20,18 +20,19 @@ public class UpdatePizzaException extends DaoException {
 
 	@Override
 	public String getMessage() {
+		String error = "";
 		if(pizza.getCode().length()!=3){
-			return "Le code rentré est different 3 lettres";
+			error = "Le code rentré est different 3 lettres";
 		} else if(pizza.getName().length()<=0){
-			return "Le pizza n'as pas de nom";
+			error = "Le pizza n'as pas de nom";
 		} else if(pizza.getPrice()<0){
-			return "La pizza à un prix nul ou négatif";
+			error = "La pizza à un prix nul ou négatif";
 		} else if(indexPizza<=0){
-			return "L'index de la pizza est trop petit";
+			error = "L'index de la pizza est trop petit";
 		} else if(indexPizza>lastIndex){
-			return "L'index de la pizza est trop grand";
+			error = "L'index de la pizza est trop grand";
 		}
-		return super.getMessage();
+		return error;
 	}
 
 }
