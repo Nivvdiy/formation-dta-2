@@ -1,18 +1,21 @@
 package fr.pizzeria.ihm;
 
 import java.util.Scanner;
-import java.util.logging.Logger;
 
-import fr.pizzeria.dao.pizzadao.IPizzaDao;
-import fr.pizzeria.dao.wrdao.FileWR;
-import fr.pizzeria.exception.PizzaException;
+import fr.pizzeria.dao.DaoFactory;
+import fr.pizzeria.dao.pizzadao.PizzaDao;
 import fr.pizzeria.model.Pizza;
 
 public class IhmUtil {
 
 	private Scanner scanner;
-	private IPizzaDao iPizzaDao;
+	private DaoFactory daoFactory;
 
+	public IhmUtil(Scanner scanner, DaoFactory daoFactory) {
+
+		this.scanner = scanner;
+		this.daoFactory = daoFactory;
+	}
 	public Scanner getScanner() {
 		return scanner;
 	}
@@ -21,22 +24,17 @@ public class IhmUtil {
 		this.scanner = scanner;
 	}
 
-	public IPizzaDao getIPizzaDao() {
-		return iPizzaDao;
+	public PizzaDao getPizzaDao() {
+		return daoFactory.getPizzaDao();
 	}
 
-	public void setIPizzaDao(IPizzaDao iPizzaDao) {
-		this.iPizzaDao = iPizzaDao;
+	public void setPizzaDao(DaoFactory daoFactory) {
+		this.daoFactory = daoFactory;
 	}
-
-	public IhmUtil(Scanner scanner, IPizzaDao iPizzaDao) {
-		this.scanner = scanner;
-		this.iPizzaDao = iPizzaDao;
-	}
-
-	public void affichePizza(Pizza p, boolean index) {
+	
+	public void affichePizza(Pizza p, boolean index){
 		if (index) {
-			System.out.print(iPizzaDao.findAllPizzas().indexOf(p) + 1 + ".\t -> \t|");
+			System.out.print(getPizzaDao().findAllPizzas().indexOf(p) + 1 + ".\t -> \t|");
 		}
 		System.out.print(p.getCode() + "|\t|" + p.getName());
 		if (p.getName().length() < 31) {
@@ -53,23 +51,6 @@ public class IhmUtil {
 		}
 		System.out.printf("|(" + "%.2f" + "€)|", p.getPrice());
 		System.out.println(p.getCategory().getContent());
-	}
-
-	public void initialize() {
-		try {
-			iPizzaDao.loadPizzas();
-		} catch (PizzaException e) {
-			Logger.getLogger(IhmUtil.class.getName()).severe(e.getMessage());
-		}
-	}
-
-	public void savePizzaFile() {
-		iPizzaDao.getIWRDao().setAllLines(FileWR.toStringList(iPizzaDao.findAllPizzas()));
-		try {
-			iPizzaDao.savePizzas();
-		} catch (PizzaException e) {
-			Logger.getLogger(IhmUtil.class.getName()).severe(e.getMessage());
-		}
 	}
 
 }

@@ -19,7 +19,7 @@ public class UpdatePizza extends Action {
 	}
 
 	@Override
-	public void doAction() {
+	public void doAction(){
 		this.afficheTitre();
 		int nbOption = subMenu.size() + 1;
 		subMenu.forEach((entry, menuV) -> {
@@ -34,7 +34,7 @@ public class UpdatePizza extends Action {
 			String temp = ihmUtil.getScanner().next();
 			try {
 				option = Integer.parseInt(temp);
-				if (0 < option & option <= nbOption) {
+				if (0 < option && option <= nbOption) {
 					error = false;
 				} else {
 					System.out.println("Saisie incorrect veuillez entrez une option valide...");

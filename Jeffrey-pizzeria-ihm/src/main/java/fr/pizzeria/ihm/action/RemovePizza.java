@@ -1,6 +1,6 @@
 package fr.pizzeria.ihm.action;
 
-import fr.pizzeria.exception.RemovePizzaException;
+import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 
@@ -11,14 +11,20 @@ public class RemovePizza extends Action {
 	}
 
 	@Override
-	public void doAction() {
+	public void doAction(){
 		this.afficheTitre();
-		int nbOption = ihmUtil.getIPizzaDao().getNbPizza() + 1;
-		if (ihmUtil.getIPizzaDao().getNbPizza() == 0) {
+		int nbOption = Pizza.getNbPizza() + 1;
+		if (Pizza.getNbPizza() == 0) {
 			System.out.println("\nAucune pizza dans la liste\n");
 			return;
 		} else {
-			ihmUtil.getIPizzaDao().findAllPizzas().forEach((p) -> getIhmUtil().affichePizza(p, true));
+			ihmUtil.getPizzaDao().findAllPizzas().forEach((p) -> {
+				try {
+					getIhmUtil().affichePizza(p, true);
+				} catch (PizzaException e) {
+					e.printStackTrace();
+				}
+			});
 		}
 		System.out.println("Veuillez choisir la pizza à Supprimer.");
 		System.out.println(nbOption + ". Abandonner");
@@ -33,7 +39,7 @@ public class RemovePizza extends Action {
 			} catch (NumberFormatException e) {
 				System.out.println("Saisie incorrect veuillez entrez un nombre...");
 			}
-			if (0 < option & option <= nbOption) {
+			if (0 < option && option <= nbOption) {
 				error = false;
 			} else {
 				System.out.println("Saisie incorrect veuillez entrez une option valide...");
@@ -43,12 +49,8 @@ public class RemovePizza extends Action {
 		if (option == nbOption) {
 			return;
 		} else {
-			Pizza deletedPizza = ihmUtil.getIPizzaDao().findAllPizzas().get(option - 1);
-			try {
-				ihmUtil.getIPizzaDao().removePizza(option);
-			} catch (RemovePizzaException e) {
-				e.printStackTrace();
-			}
+			Pizza deletedPizza = ihmUtil.getPizzaDao().findAllPizzas().get(option - 1);
+			ihmUtil.getPizzaDao().deletePizza(option);
 			System.out.println("Pizza " + deletedPizza.getName() + " supprimer avec succès");
 		}
 	}

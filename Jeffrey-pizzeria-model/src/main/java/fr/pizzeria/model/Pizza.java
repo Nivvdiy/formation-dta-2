@@ -3,8 +3,16 @@ package fr.pizzeria.model;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+@Entity
 public class Pizza {
 
 	public enum Category {
@@ -36,20 +44,23 @@ public class Pizza {
 	}
 
 	private static int nbPizza;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 	private String code;
 	private String name;
 	private double price;
+	@Enumerated
 	private Category category;
 
-	public Pizza(String code, String name, double price, Category category, boolean increment) {
-		super();
-		if (increment) {
-			addPizza();
-		}
+	public Pizza(String code, String name, double price, Category category, boolean indent) {
 		this.code = code;
 		this.name = name;
 		this.price = price;
 		this.category = category;
+		if(indent){
+			nbPizza++;
+		}
 	}
 
 	public Category getCategory() {
@@ -62,14 +73,6 @@ public class Pizza {
 
 	public static int getNbPizza() {
 		return nbPizza;
-	}
-
-	public static void addPizza() {
-		nbPizza++;
-	}
-
-	public static void removePizza() {
-		nbPizza--;
 	}
 
 	public String getCode() {
@@ -114,6 +117,15 @@ public class Pizza {
 		}
 		Pizza rhs = (Pizza) obj;
 		return new EqualsBuilder().append(this.getCode(), rhs.getCode()).isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder(17, 37).append(name).append(code).toHashCode();
+	}
+
+	public static void setNbPizza(int nbPizza) {
+		Pizza.nbPizza = nbPizza;
 	}
 
 }

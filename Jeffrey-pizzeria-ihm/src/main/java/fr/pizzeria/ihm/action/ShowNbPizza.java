@@ -1,6 +1,7 @@
 package fr.pizzeria.ihm.action;
 
 import fr.pizzeria.ihm.IhmUtil;
+import fr.pizzeria.model.Pizza;
 
 public class ShowNbPizza extends Action {
 
@@ -11,7 +12,7 @@ public class ShowNbPizza extends Action {
 	@Override
 	public void doAction() {
 		this.afficheTitre();
-		System.out.println(ihmUtil.getIPizzaDao().getNbPizza() + " pizza(s)");
+		System.out.println(Pizza.getNbPizza() + " pizza(s)");
 	}
 
 }

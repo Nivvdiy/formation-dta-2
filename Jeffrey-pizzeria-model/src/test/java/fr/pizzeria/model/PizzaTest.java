@@ -18,7 +18,7 @@ public class PizzaTest {
 		Category.getCatList().forEach((cate, categ) -> cat.add(categ));
 		for (int i = 0; i < 120; i++) {
 			pizzas.add(new Pizza("MAR", "Margharita", (i + 1) * 4.4, cat.get((int) ((Math.random() * 4))), true));
-			System.out.println(pizzas.get(i).getCategory());
+			System.out.println(pizzas.get(i).getCategory().toString());
 		}
 		assertEquals(pizzas.size(), Pizza.getNbPizza());
 	}

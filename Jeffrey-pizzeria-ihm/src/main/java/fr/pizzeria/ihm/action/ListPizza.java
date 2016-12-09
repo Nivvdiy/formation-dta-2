@@ -1,6 +1,8 @@
 package fr.pizzeria.ihm.action;
 
+import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
+import fr.pizzeria.model.Pizza;
 
 public class ListPizza extends Action {
 
@@ -9,12 +11,18 @@ public class ListPizza extends Action {
 	}
 
 	@Override
-	public void doAction() {
+	public void doAction(){
 		this.afficheTitre();
-		if (ihmUtil.getIPizzaDao().getNbPizza() == 0) {
+		if (Pizza.getNbPizza() == 0) {
 			System.out.println("\nAucune pizza dans la liste\n");
 		} else {
-			ihmUtil.getIPizzaDao().findAllPizzas().forEach((p) -> getIhmUtil().affichePizza(p, false));
+			ihmUtil.getPizzaDao().findAllPizzas().forEach((p) -> {
+				try {
+					getIhmUtil().affichePizza(p, false);
+				} catch (PizzaException e) {
+					e.printStackTrace();
+				}
+			});
 		}
 	}
 

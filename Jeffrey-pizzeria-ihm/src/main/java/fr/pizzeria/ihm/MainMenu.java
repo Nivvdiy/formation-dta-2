@@ -32,10 +32,9 @@ public class MainMenu {
 		this.menu.put(menu.size() + 1, new ShowNbPizza(ihmUtil));
 		this.menu.put(menu.size() + 1, new ExitApp(ihmUtil));
 		this.ihmUtil = ihmUtil;
-		ihmUtil.initialize();
 	}
 
-	public void run() {
+	public void run(){
 		boolean running = true;
 		while (running) {
 			System.out.println("***** Bienvenue sur le terminal de la pizzeria DTA *****");
@@ -49,7 +48,7 @@ public class MainMenu {
 				String temp = ihmUtil.getScanner().next();
 				try {
 					option = Integer.parseInt(temp);
-					if (0 < option & option < menu.size() + 1) {
+					if (0 < option && option < menu.size() + 1) {
 						error = false;
 					} else {
 						System.out.println("Saisie incorrect veuillez entrez une option valide...");

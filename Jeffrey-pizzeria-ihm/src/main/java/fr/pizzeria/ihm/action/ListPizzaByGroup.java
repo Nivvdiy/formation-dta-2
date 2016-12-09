@@ -2,6 +2,7 @@ package fr.pizzeria.ihm.action;
 
 import java.util.stream.Collectors;
 
+import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 
@@ -12,13 +13,19 @@ public class ListPizzaByGroup extends Action {
 	}
 
 	@Override
-	public void doAction() {
+	public void doAction(){
 		this.afficheTitre();
-		if (ihmUtil.getIPizzaDao().getNbPizza() == 0) {
+		if (Pizza.getNbPizza() == 0) {
 			System.out.println("\nAucune pizza dans la liste\n");
 		} else {
-			ihmUtil.getIPizzaDao().findAllPizzas().stream().collect(Collectors.groupingBy(Pizza::getCategory))
-					.forEach((a, b) -> b.forEach((c) -> getIhmUtil().affichePizza(c, false)));
+			ihmUtil.getPizzaDao().findAllPizzas().stream().collect(Collectors.groupingBy(Pizza::getCategory))
+					.forEach((a, b) -> b.forEach((c) -> {
+						try {
+							getIhmUtil().affichePizza(c, false);
+						} catch (PizzaException e) {
+							e.printStackTrace();
+						}
+					}));
 
 		}
 	}

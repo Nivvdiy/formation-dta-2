@@ -1,5 +1,6 @@
 package fr.pizzeria.ihm.action;
 
+import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 
@@ -10,14 +11,20 @@ public abstract class Modify extends Action {
 	}
 
 	@Override
-	public final void doAction() {
+	public final void doAction(){
 		this.afficheTitre();
-		int nbOption = ihmUtil.getIPizzaDao().getNbPizza() + 1;
-		if (ihmUtil.getIPizzaDao().getNbPizza() == 0) {
+		int nbOption = Pizza.getNbPizza() + 1;
+		if (Pizza.getNbPizza() == 0) {
 			System.out.println("\nAucune pizza dans la liste\n");
 			return;
 		} else {
-			ihmUtil.getIPizzaDao().findAllPizzas().forEach((p) -> getIhmUtil().affichePizza(p, true));
+			ihmUtil.getPizzaDao().findAllPizzas().forEach((p) -> {
+				try {
+					getIhmUtil().affichePizza(p, true);
+				} catch (PizzaException e) {
+					e.printStackTrace();
+				}
+			});
 		}
 		System.out.println("Veuillez choisir la pizza à modifier.");
 		System.out.println(nbOption + ". Abandonner");
@@ -32,7 +39,7 @@ public abstract class Modify extends Action {
 			} catch (NumberFormatException e) {
 				System.out.println("Saisie incorrect veuillez entrez un nombre...");
 			}
-			if (0 < option & option <= nbOption) {
+			if (0 < option && option <= nbOption) {
 				error = false;
 			} else {
 				System.out.println("Saisie incorrect veuillez entrez une option valide...");
@@ -42,10 +49,10 @@ public abstract class Modify extends Action {
 		if (option == nbOption) {
 			return;
 		} else {
-			Pizza updatedPizza = ihmUtil.getIPizzaDao().findAllPizzas().get(option - 1);
+			Pizza updatedPizza = ihmUtil.getPizzaDao().findAllPizzas().get(option - 1);
 			System.out.println("Vous allez modifier la pizza " + updatedPizza.getName());
 			modifyPizza(option);
-			updatedPizza = ihmUtil.getIPizzaDao().findAllPizzas().get(option - 1);
+			updatedPizza = ihmUtil.getPizzaDao().findAllPizzas().get(option - 1);
 			System.out.println("Pizza modifié " + updatedPizza.getName());
 		}
 

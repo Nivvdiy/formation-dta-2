@@ -2,6 +2,7 @@ package fr.pizzeria.ihm.action;
 
 import java.util.Comparator;
 
+import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 
@@ -12,13 +13,19 @@ public class ListPizzaByPrice extends Action {
 	}
 
 	@Override
-	public void doAction() {
+	public void doAction(){
 		this.afficheTitre();
-		if (ihmUtil.getIPizzaDao().getNbPizza() == 0) {
+		if (Pizza.getNbPizza() == 0) {
 			System.out.println("\nAucune pizza dans la liste\n");
 		} else {
-			ihmUtil.getIPizzaDao().findAllPizzas().stream().sorted(Comparator.comparing(Pizza::getPrice))
-					.forEach((p) -> ihmUtil.affichePizza(p, false));
+			ihmUtil.getPizzaDao().findAllPizzas().stream().sorted(Comparator.comparing(Pizza::getPrice))
+					.forEach((p) -> {
+						try {
+							ihmUtil.affichePizza(p, false);
+						} catch (PizzaException e) {
+							e.printStackTrace();
+						}
+					});
 
 		}
 	}

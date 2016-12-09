@@ -1,6 +1,5 @@
 package fr.pizzeria.ihm.action;
 
-import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 
@@ -11,16 +10,12 @@ public final class ModifyCode extends Modify {
 	}
 
 	@Override
-	protected void modifyPizza(int option) {
-		Pizza pizza = ihmUtil.getIPizzaDao().findAllPizzas().get(option - 1);
+	protected void modifyPizza(int option){
+		Pizza pizza = ihmUtil.getPizzaDao().findAllPizzas().get(option - 1);
 		System.out.println("Ancien code => " + pizza.getCode());
 		System.out.println("Veuillez saisir le code");
 		pizza.setCode(ihmUtil.getScanner().next());
-		try {
-			ihmUtil.getIPizzaDao().updatePizza(option, pizza);
-		} catch (UpdatePizzaException e) {
-			e.printStackTrace();
-		}
+		ihmUtil.getPizzaDao().updatePizza(option, pizza);
 	}
 
 }

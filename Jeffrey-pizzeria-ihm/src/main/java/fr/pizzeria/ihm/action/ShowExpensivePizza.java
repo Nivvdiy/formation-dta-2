@@ -9,9 +9,9 @@ public class ShowExpensivePizza extends Action {
 	}
 
 	@Override
-	public void doAction() {
+	public void doAction(){
 		this.afficheTitre();
-		ihmUtil.affichePizza(ihmUtil.getIPizzaDao().findAllPizzas().stream().reduce((p1, p2) -> {
+		ihmUtil.affichePizza(ihmUtil.getPizzaDao().findAllPizzas().stream().reduce((p1, p2) -> {
 			return p1.getPrice() > p2.getPrice() ? p1 : p2;
 		}).get(), false);
 	}

@@ -1,6 +1,5 @@
 package fr.pizzeria.ihm.action;
 
-import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 
@@ -11,8 +10,8 @@ public final class ModifyPrice extends Modify {
 	}
 
 	@Override
-	protected void modifyPizza(int option) {
-		Pizza pizza = ihmUtil.getIPizzaDao().findAllPizzas().get(option - 1);
+	protected void modifyPizza(int option){
+		Pizza pizza = ihmUtil.getPizzaDao().findAllPizzas().get(option - 1);
 		System.out.println("Ancien prix => " + pizza.getPrice());
 		System.out.println("Veuillez saisir le prix");
 		boolean error = true;
@@ -28,11 +27,7 @@ public final class ModifyPrice extends Modify {
 			}
 
 		}
-		try {
-			ihmUtil.getIPizzaDao().updatePizza(option, pizza);
-		} catch (UpdatePizzaException e) {
-			e.printStackTrace();
-		}
+		ihmUtil.getPizzaDao().updatePizza(option, pizza);
 	}
 
 }

@@ -3,7 +3,6 @@ package fr.pizzeria.ihm.action;
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.Pizza.Category;
@@ -15,8 +14,8 @@ public final class ModifyCategory extends Modify {
 	}
 
 	@Override
-	protected void modifyPizza(int option) {
-		Pizza pizza = ihmUtil.getIPizzaDao().findAllPizzas().get(option - 1);
+	protected void modifyPizza(int option){
+		Pizza pizza = ihmUtil.getPizzaDao().findAllPizzas().get(option - 1);
 		System.out.println("Ancienne catégorie => " + pizza.getCategory());
 		System.out.println("Veuillez saisir le numéro de la catégorie");
 		Map<Integer, String> catList = new HashMap<Integer, String>();
@@ -36,10 +35,6 @@ public final class ModifyCategory extends Modify {
 			}
 
 		}
-		try {
-			ihmUtil.getIPizzaDao().updatePizza(option, pizza);
-		} catch (UpdatePizzaException e) {
-			e.printStackTrace();
-		}
+			ihmUtil.getPizzaDao().updatePizza(option, pizza);
 	}
 }

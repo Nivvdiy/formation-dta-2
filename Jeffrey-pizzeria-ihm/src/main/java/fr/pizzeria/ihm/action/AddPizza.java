@@ -3,7 +3,6 @@ package fr.pizzeria.ihm.action;
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.Pizza.Category;
@@ -15,7 +14,7 @@ public class AddPizza extends Action {
 	}
 
 	@Override
-	public void doAction() {
+	public void doAction(){
 		this.afficheTitre();
 		System.out.println("Veuillez saisir le code");
 		String code = ihmUtil.getScanner().next();
@@ -56,11 +55,7 @@ public class AddPizza extends Action {
 			}
 
 		}
-		try {
-			ihmUtil.getIPizzaDao().saveNewPizza(new Pizza(code, name, price, cat, true));
-		} catch (SavePizzaException e) {
-			e.printStackTrace();
-		}
+		ihmUtil.getPizzaDao().saveNewPizza(new Pizza(code, name, price, cat, true));
 	}
 
 }
