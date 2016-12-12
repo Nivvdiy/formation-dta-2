@@ -10,7 +10,6 @@
 		<module>Jeffrey-pizzeria-model</module>
 		<module>Jeffrey-pizzeria-dao</module>
 		<module>Jeffrey-pizzeria-console</module>
-
 		<module>Jeffrey-pizzeria-ihm</module>
 	</modules>
 	<dependencyManagement>
@@ -19,11 +18,6 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
 				<version>3.5</version>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>Jeffrey-pizzeria-console</artifactId>
-				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
