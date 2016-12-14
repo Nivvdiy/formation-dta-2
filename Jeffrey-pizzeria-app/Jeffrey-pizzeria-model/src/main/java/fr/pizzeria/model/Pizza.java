@@ -57,6 +57,7 @@ public class Pizza {
 	@Column(columnDefinition = "enum('VIANDE','POISSON','VEGETARIENNE','SANS_VIANDE')")
 	@Enumerated(EnumType.STRING)
 	private Category category;
+	private String image;
 	
 	public Pizza(){
 		
@@ -106,6 +107,22 @@ public class Pizza {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Override

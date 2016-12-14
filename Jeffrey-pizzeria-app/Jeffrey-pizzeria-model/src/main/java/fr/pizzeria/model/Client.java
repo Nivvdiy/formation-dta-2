@@ -3,6 +3,8 @@ package fr.pizzeria.model;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -17,10 +19,12 @@ import javax.persistence.OneToMany;
 public class Client {
 
 	@Id
-	private byte id;	
-	private String adresse;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private byte id;
 	private String nom;
-	private String prenom;
+	private String prenom;	
+	private String ville;
+	private int age;
 
 	private String email;
 	private String password;
@@ -36,12 +40,12 @@ public class Client {
 		this.id = id;
 	}
 
-	public String getAdresse() {
-		return adresse;
+	public String getVille() {
+		return ville;
 	}
 
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
+	public void setVille(String ville) {
+		this.ville = ville;
 	}
 
 	public String getNom() {
@@ -82,6 +86,14 @@ public class Client {
 
 	public void setCommandes(Set<Commande> commandes) {
 		this.commandes = commandes;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 }

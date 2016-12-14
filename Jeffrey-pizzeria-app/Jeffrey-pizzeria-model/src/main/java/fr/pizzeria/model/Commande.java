@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -28,6 +30,7 @@ public class Commande {
 	}
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private byte id;
 	@Column(columnDefinition = "enum('PREPARATION','LIVRAISON','LIVRE','ATTENTE_PREPARATION','ATTENTE_LIVREUR')")
 	@Enumerated(EnumType.ORDINAL)
