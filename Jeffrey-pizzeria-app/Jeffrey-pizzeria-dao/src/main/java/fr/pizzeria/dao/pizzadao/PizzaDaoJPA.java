@@ -29,7 +29,10 @@ public class PizzaDaoJPA implements PizzaDao {
 	public PizzaDaoJPA(){
 		System.out.println("JPA");
 		emf = Persistence.createEntityManagerFactory("JPAPizza");
+	}
 
+	private void reloadPizza() {
+		Pizza.setNbPizza(0);
 		execute((em) -> {
 			TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p", Pizza.class);
 			Pizza.setNbPizza(query.getResultList().size());
@@ -56,6 +59,7 @@ public class PizzaDaoJPA implements PizzaDao {
 
 	@Override
 	public List<Pizza> findAllPizzas() {
+		reloadPizza();
 		return listPizzas;
 	}
 

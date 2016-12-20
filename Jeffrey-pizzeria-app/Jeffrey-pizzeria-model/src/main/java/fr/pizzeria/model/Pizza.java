@@ -73,6 +73,17 @@ public class Pizza {
 		}
 	}
 
+	public Pizza(String code, String name, double price, Category category, String image, boolean indent) {
+		this.code = code;
+		this.name = name;
+		this.price = price;
+		this.category = category;
+		this.image = image;
+		if(indent){
+			nbPizza++;
+		}
+	}
+
 	public Category getCategory() {
 		return category;
 	}
