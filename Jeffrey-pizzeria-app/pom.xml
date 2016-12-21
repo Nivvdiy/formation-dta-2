@@ -11,6 +11,8 @@
 		<module>Jeffrey-pizzeria-dao</module>
 		<module>Jeffrey-pizzeria-console</module>
 		<module>Jeffrey-pizzeria-ihm</module>
+		<module>../Jeffrey-pizzeria-client</module>
+		<module>../jeffrey-pizzeria-admin-app</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>

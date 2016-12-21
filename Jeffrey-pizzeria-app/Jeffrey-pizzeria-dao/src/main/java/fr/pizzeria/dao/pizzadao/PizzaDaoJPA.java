@@ -34,7 +34,7 @@ public class PizzaDaoJPA implements PizzaDao {
 	private void reloadPizza() {
 		Pizza.setNbPizza(0);
 		execute((em) -> {
-			TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p", Pizza.class);
+			TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p ORDER BY name ASC", Pizza.class);
 			Pizza.setNbPizza(query.getResultList().size());
 			listPizzas = query.getResultList();
 		});
