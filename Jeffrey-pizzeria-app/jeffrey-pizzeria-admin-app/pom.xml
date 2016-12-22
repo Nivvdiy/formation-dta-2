@@ -5,11 +5,33 @@
 	<packaging>war</packaging>
 	<name>jeffrey-pizzeria-admin-app Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sonar.exclusion>file : **/src/main/webapp/bootstrap/*</sonar.exclusion>
+		<sonar.exclusion>file : **/target/*</sonar.exclusion>
 	</properties>
+	
+	<parent>
+		<groupId>DTA</groupId>
+		<artifactId>Jeffrey-pizzeria-app</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	
+	<build>
+		<finalName>jeffrey-pizzeria-admin-app</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -26,13 +48,19 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>DTA</groupId>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>Jeffrey-pizzeria-dao</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>DTA</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>Jeffrey-pizzeria-model</artifactId>
 		</dependency>
 		<dependency>
@@ -41,12 +69,5 @@
 			<version>1.2</version>
 		</dependency>
 	</dependencies>
-	<build>
-		<finalName>jeffrey-pizzeria-admin-app</finalName>
-	</build>
-	<parent>
-		<groupId>DTA</groupId>
-		<artifactId>Jeffrey-pizzeria-app</artifactId>
-		<version>1.0.0</version>
-	</parent>
+	
 </project>

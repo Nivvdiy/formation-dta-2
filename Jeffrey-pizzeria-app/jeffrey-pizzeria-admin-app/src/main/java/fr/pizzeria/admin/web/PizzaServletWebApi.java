@@ -3,11 +3,15 @@ package fr.pizzeria.admin.web;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.pizzeria.admin.metier.PizzaServiceEJB;
 import fr.pizzeria.dao.DaoFactory;
 import fr.pizzeria.dao.JPADaoFactory;
 import fr.pizzeria.model.Pizza;
@@ -16,32 +20,23 @@ import fr.pizzeria.model.Pizza.Category;
 /**
  * Servlet implementation class PizzaServletWebApi
  */
+@WebServlet("/api/servlet/pizzas")
 public class PizzaServletWebApi extends HttpServlet {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2391966807121887085L;
 
-	DaoFactory jpaDao;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public PizzaServletWebApi() {
-		super();
-		try {
-			jpaDao = new JPADaoFactory();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
+	@Inject
+	private DaoFactory jpaDao;
+	@EJB
+	private PizzaServiceEJB pizzaServiceEJB;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Pizza> pizzas = jpaDao.getPizzaDao().findAllPizzas();
+		List<Pizza> pizzas = pizzaServiceEJB.findAllPizzas();
 		if(Pizza.getNbPizza()>0){
 			pizzas.forEach((pizza)->{
 				try {
@@ -66,7 +61,7 @@ public class PizzaServletWebApi extends HttpServlet {
 		double price = Double.parseDouble(request.getParameter("price"));
 		Category cat = Category.parseCategory(request.getParameter("category"));
 		String image = request.getParameter("image");
-		jpaDao.getPizzaDao().saveNewPizza(new Pizza(code, name, price, cat, image, true));
+		pizzaServiceEJB.saveNewPizza(new Pizza(code, name, price, cat, image, true));
 		response.getWriter().println("Pizza enregistrée");
 		response.setStatus(201);
 	}
@@ -75,7 +70,7 @@ public class PizzaServletWebApi extends HttpServlet {
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Pizza> pizzas = jpaDao.getPizzaDao().findAllPizzas();
+		List<Pizza> pizzas = pizzaServiceEJB.findAllPizzas();
 		String code = request.getParameter("code");
 		String newCode = request.getParameter("code");
 		String name = request.getParameter("name");
@@ -89,7 +84,7 @@ public class PizzaServletWebApi extends HttpServlet {
 				p.setImage(image);
 				p.setName(name);
 				p.setPrice(price);
-				jpaDao.getPizzaDao().updatePizza(code, p);
+				pizzaServiceEJB.updatePizza(code, p);
 			}
 		});
 		response.getWriter().println("Pizza mise à jour");
@@ -101,7 +96,7 @@ public class PizzaServletWebApi extends HttpServlet {
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String code = request.getParameter("code");
-		jpaDao.getPizzaDao().deletePizza(code);
+		pizzaServiceEJB.deletePizza(code);
 		response.getWriter().println("Pizza supprimée");
 		response.setStatus(200);
 	}
