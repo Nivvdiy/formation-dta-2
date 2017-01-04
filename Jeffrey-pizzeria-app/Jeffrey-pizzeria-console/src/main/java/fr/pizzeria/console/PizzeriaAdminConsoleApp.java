@@ -1,11 +1,10 @@
 package fr.pizzeria.console;
 
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import java.util.logging.Level;
 
-import fr.pizzeria.dao.DaoFactory;
-import fr.pizzeria.ihm.IhmUtil;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import fr.pizzeria.ihm.MainMenu;
 
 public class PizzeriaAdminConsoleApp {
@@ -17,14 +16,15 @@ public class PizzeriaAdminConsoleApp {
 
 		ResourceBundle bundle = ResourceBundle.getBundle("app");
 		String conf = bundle.getString("dao.impl");
+		String[] paths = { conf, "application-config.xml" };
+		
+		//try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(paths)) {
+		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PizzeriaAppSpringConfig.class)) {
+			MainMenu mainMenu = context.getBean(MainMenu.class);
 
-		DaoFactory daoFactory = (DaoFactory) Class.forName(conf).newInstance();
+			mainMenu.run();
 
-		IhmUtil ihmUtil = new IhmUtil(new Scanner(System.in), daoFactory);
-
-		MainMenu mainMenu = new MainMenu(ihmUtil);
-
-		mainMenu.run();
+		}
 	}
 
 }

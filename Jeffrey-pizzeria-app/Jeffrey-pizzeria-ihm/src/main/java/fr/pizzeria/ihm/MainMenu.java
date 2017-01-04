@@ -3,6 +3,9 @@ package fr.pizzeria.ihm;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import fr.pizzeria.ihm.action.Action;
 import fr.pizzeria.ihm.action.AddPizza;
 import fr.pizzeria.ihm.action.ExitApp;
@@ -14,6 +17,7 @@ import fr.pizzeria.ihm.action.ShowExpensivePizza;
 import fr.pizzeria.ihm.action.ShowNbPizza;
 import fr.pizzeria.ihm.action.UpdatePizza;
 
+@Component
 public class MainMenu {
 
 	private Map<Integer, Action> menu = new HashMap<Integer, Action>();
@@ -21,6 +25,7 @@ public class MainMenu {
 	boolean error;
 	int option;
 
+	@Autowired
 	public MainMenu(IhmUtil ihmUtil) {
 		this.menu.put(menu.size() + 1, new ListPizza(ihmUtil));
 		this.menu.put(menu.size() + 1, new AddPizza(ihmUtil));

@@ -28,7 +28,6 @@ public class PizzaDaoFile implements PizzaDao {
 	private List<Pizza> listPizzas = new ArrayList<>();
 
 	public PizzaDaoFile(){
-		System.out.println("File");
 		List<String> listFichiers = read("data/");
 		listFichiers.forEach(s -> {
 			File f = new File(s);

@@ -9,29 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.pizzeria.admin.metier.PizzaServiceEJB;
+import fr.pizzeria.admin.metier.ClientServiceEJB;
 
 /**
- * Servlet implementation class RemovePizzaController
+ * Servlet implementation class RemoveClientController
  */
-@WebServlet("/pizzas/delete")
-public class RemovePizzaController extends HttpServlet {
+@WebServlet("/clients/delete")
+public class RemoveClientController extends HttpServlet {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3792140738638386740L;
 
 	@EJB
-	private PizzaServiceEJB pizzaServiceEJB;
+	private ClientServiceEJB clientServiceEJB;
 
 
 	/**
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String code = request.getParameter("code");
-		pizzaServiceEJB.deletePizza(code);
-		response.getWriter().println("Pizza supprimée");
+		int id = Integer.parseInt(request.getParameter("id"));
+		clientServiceEJB.deleteClient(id);
+		response.getWriter().println("Client supprimée");
 		response.setStatus(200);
 	}
 

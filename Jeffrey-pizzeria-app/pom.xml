@@ -11,8 +11,8 @@
 		<module>Jeffrey-pizzeria-dao</module>
 		<module>Jeffrey-pizzeria-console</module>
 		<module>Jeffrey-pizzeria-ihm</module>
-		
-		
+
+
 		<module>Jeffrey-pizzeria-client</module>
 		<module>jeffrey-pizzeria-admin-app</module>
 	</modules>
@@ -60,6 +60,13 @@
 				<artifactId>hibernate-entitymanager</artifactId>
 				<version>5.1.0.Final</version>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>4.2.6.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<properties>
@@ -70,27 +77,33 @@
 
 	<profiles>
 		<profile>
+			<id>dev-rest</id>
+			<properties>
+				<dao.impl>dao-rest-config.xml</dao.impl>
+			</properties>
+		</profile>
+		<profile>
 			<id>dev</id>
 			<properties>
-				<dao.impl>fr.pizzeria.dao.FileDaoFactory</dao.impl>
+				<dao.impl>dao-file-config.xml</dao.impl>
 			</properties>
 		</profile>
 		<profile>
 			<id>dev-mysql</id>
 			<properties>
-				<dao.impl>fr.pizzeria.dao.MySQLDaoFactory</dao.impl>
+				<dao.impl>dao-mysql-config.xml</dao.impl>
 			</properties>
 		</profile>
 		<profile>
 			<id>dev-jpa</id>
 			<properties>
-				<dao.impl>fr.pizzeria.dao.JPADaoFactory</dao.impl>
+				<dao.impl>dao-jpa-config.xml</dao.impl>
 			</properties>
 		</profile>
 		<profile>
 			<id>prod</id>
 			<properties>
-				<dao.impl>fr.pizzeria.dao.ArrayDaoFactory</dao.impl>
+				<dao.impl>dao-array-config.xml</dao.impl>
 			</properties>
 		</profile>
 	</profiles>

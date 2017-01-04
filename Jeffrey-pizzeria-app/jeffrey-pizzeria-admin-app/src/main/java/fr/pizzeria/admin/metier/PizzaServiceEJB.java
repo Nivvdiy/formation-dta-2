@@ -23,6 +23,12 @@ public class PizzaServiceEJB {
 		Pizza.setNbPizza(query.getResultList().size());
 		return query.getResultList();
 	}
+	
+	public Pizza findPizza(int id) {
+		TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p WHERE p.id = :id ORDER BY name ASC", Pizza.class);
+		query.setParameter("id", id);
+		return query.getSingleResult();
+	}
 
 	public void deletePizza(String code) {
 			TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p WHERE p.code = :code", Pizza.class);
@@ -41,6 +47,22 @@ public class PizzaServiceEJB {
 			}
 		});
 		
+	}
+
+	public void updatePizza(int id, Pizza p) {
+		findAllPizzas().forEach(pizza -> {
+			if (pizza.getId()==id) {
+				updatePizza(pizza.getCode(), p);
+			}
+		});
+	}
+
+	public void deletePizza(int id) {
+		findAllPizzas().forEach(pizza -> {
+			if (pizza.getId()==id) {
+				deletePizza(pizza.getCode());
+			}
+		});
 	}
 
 }

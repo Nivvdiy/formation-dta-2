@@ -1,13 +1,17 @@
 package fr.pizzeria.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import fr.pizzeria.dao.pizzadao.PizzaDao;
 
-public abstract class DaoFactory {
+@Component
+public class DaoFactory {
 
 	PizzaDao pizzaDao;
 
+	@Autowired
 	public DaoFactory(PizzaDao pizzaDao) {
-		super();
 		this.pizzaDao = pizzaDao;
 	}
 

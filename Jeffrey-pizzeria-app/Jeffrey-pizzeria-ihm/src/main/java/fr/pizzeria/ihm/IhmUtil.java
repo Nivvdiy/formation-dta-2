@@ -2,17 +2,21 @@ package fr.pizzeria.ihm;
 
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import fr.pizzeria.dao.DaoFactory;
 import fr.pizzeria.dao.pizzadao.PizzaDao;
 import fr.pizzeria.model.Pizza;
 
+@Component
 public class IhmUtil {
 
 	private Scanner scanner;
 	private DaoFactory daoFactory;
 
+	@Autowired
 	public IhmUtil(Scanner scanner, DaoFactory daoFactory) {
-
 		this.scanner = scanner;
 		this.daoFactory = daoFactory;
 	}

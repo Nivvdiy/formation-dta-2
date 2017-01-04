@@ -1,13 +1,10 @@
 package fr.pizzeria.model;
 
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 /**
@@ -15,12 +12,13 @@ import javax.persistence.OneToMany;
  * 
  */
 @Entity
-@NamedQuery(name="Client.findAll", query="SELECT c FROM Client c")
+@Table(name = "client")
 public class Client {
 
+	private static int nbClient;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private byte id;
+	private int id;
 	private String nom;
 	private String prenom;	
 	private String ville;
@@ -29,14 +27,23 @@ public class Client {
 	private String email;
 	private String password;
 	
-	@OneToMany(mappedBy="client")
-	private Set<Commande> commandes;
+	public Client(){
+	}
 	
-	public byte getId() {
+	public Client(String nom, String prenom, String ville, int age, String email, String password) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.ville = ville;
+		this.age = age;
+		this.email = email;
+		this.password = password;
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(byte id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -80,20 +87,20 @@ public class Client {
 		this.password = password;
 	}
 
-	public Set<Commande> getCommandes() {
-		return commandes;
-	}
-
-	public void setCommandes(Set<Commande> commandes) {
-		this.commandes = commandes;
-	}
-
 	public int getAge() {
 		return age;
 	}
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public static void setNbClient(int nb) {
+		nbClient = nb;
+	}
+	
+	public static int getNbClient(){
+		return nbClient;
 	}
 
 }

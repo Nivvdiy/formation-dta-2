@@ -11,28 +11,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.pizzeria.admin.metier.PizzaServiceEJB;
-import fr.pizzeria.model.Pizza;
-import fr.pizzeria.model.Pizza.Category;
+import fr.pizzeria.admin.metier.ClientServiceEJB;
+import fr.pizzeria.model.Client;
 
 /**
- * Servlet implementation class UpdatePizzaController
+ * Servlet implementation class UpdateClientController
  */
-@WebServlet("/pizzas/new")
-public class AddPizzaController extends HttpServlet {
+@WebServlet("/clients/new")
+public class AddClientController extends HttpServlet {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3802933391766510822L;
-	
+
 	@EJB
-	private PizzaServiceEJB pizzaServiceEJB;
+	private ClientServiceEJB clientServiceEJB;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/pizzas/addPizza.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/clients/addClient.jsp");
 		dispatcher.forward(request, response);
 		
 	}
@@ -41,22 +40,25 @@ public class AddPizzaController extends HttpServlet {
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Pizza> pizzas = pizzaServiceEJB.findAllPizzas();
-		String code = request.getParameter("code");
-		String name = request.getParameter("name");
-		double price = Double.parseDouble(request.getParameter("price"));
-		Category cat = Category.parseCategory(request.getParameter("category"));
-		String image = request.getParameter("image").substring(request.getParameter("image").lastIndexOf('\\')+1);
+		List<Client> clients = clientServiceEJB.findAllClients();
 		boolean error=false;
-		for(Pizza p : pizzas){
-			if (p.getCode()==code) {
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String ville = request.getParameter("ville");
+		int age = Integer.parseInt( request.getParameter("age"));
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		for(Client c : clients){
+			if (c.getEmail().equals(email)) {
 				error=true;
 			}
 		}
 		if(!error){
-			pizzaServiceEJB.saveNewPizza(new Pizza(code, name, price, cat, image, true));
+			clientServiceEJB.saveNewClient(new Client(nom, prenom, ville, age, email, password));
+			response.getWriter().println("Client ajouter");
+		} else {
+			response.getWriter().println("Client déjà existant");
 		}
-		response.getWriter().println("Pizza ajouter");
 		response.setStatus(200);
 	}
 

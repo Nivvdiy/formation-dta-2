@@ -55,6 +55,9 @@ public class Commande {
 	@ManyToOne
 	@JoinColumn(name="ID_Livreur")
 	private Livreur livreur;
+	
+	public Commande(){
+	}
 
 	public byte getId() {
 		return id;

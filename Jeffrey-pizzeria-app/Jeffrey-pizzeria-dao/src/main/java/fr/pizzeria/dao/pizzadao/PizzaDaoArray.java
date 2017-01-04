@@ -13,7 +13,6 @@ public class PizzaDaoArray implements PizzaDao {
 	private List<Pizza> listPizzas = new ArrayList<>();
 
 	public PizzaDaoArray() {
-		System.out.println("Array");
 		listPizzas.add(new Pizza("PEP", "Pépéroni", 12.50, Category.VIANDE, true));
 		listPizzas.add(new Pizza("MAR", "Margherita", 14.00, Category.SANS_VIANDE, true));
 		listPizzas.add(new Pizza("REI", "La Reine", 11.50, Category.VIANDE, true));

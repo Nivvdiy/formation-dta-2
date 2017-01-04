@@ -27,7 +27,6 @@ public class PizzaDaoJPA implements PizzaDao {
 	private EntityManagerFactory emf;
 
 	public PizzaDaoJPA(){
-		System.out.println("JPA");
 		emf = Persistence.createEntityManagerFactory("JPAPizza");
 	}
 

@@ -27,6 +27,9 @@ public class Livreur {
 	//bi-directional many-to-one association to Commande
 	@OneToMany(mappedBy="livreur")
 	private List<Commande> commandes;
+	
+	public Livreur(){
+	}
 
 	public byte getId() {
 		return id;

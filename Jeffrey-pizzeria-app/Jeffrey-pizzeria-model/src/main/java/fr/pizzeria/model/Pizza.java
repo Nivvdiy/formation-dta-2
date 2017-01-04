@@ -60,7 +60,6 @@ public class Pizza {
 	private String image;
 	
 	public Pizza(){
-		
 	}
 
 	public Pizza(String code, String name, double price, Category category, boolean indent) {

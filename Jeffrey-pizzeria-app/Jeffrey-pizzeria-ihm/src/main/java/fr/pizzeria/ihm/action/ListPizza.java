@@ -13,6 +13,7 @@ public class ListPizza extends Action {
 	@Override
 	public void doAction(){
 		this.afficheTitre();
+		ihmUtil.getPizzaDao().findAllPizzas();
 		if (Pizza.getNbPizza() == 0) {
 			System.out.println("\nAucune pizza dans la liste\n");
 		} else {

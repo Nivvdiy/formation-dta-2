@@ -11,26 +11,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.pizzeria.admin.metier.PizzaServiceEJB;
-import fr.pizzeria.model.Pizza;
+import fr.pizzeria.admin.metier.ClientServiceEJB;
+import fr.pizzeria.model.Client;
 
 /**
- * Servlet implementation class ListPizzaController
+ * Servlet implementation class ListClientController
  */
-@WebServlet("/pizzas/list")
-public class ListPizzaController extends HttpServlet {
+@WebServlet("/clients/list")
+public class ListClientController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	private PizzaServiceEJB pizzaServiceEJB;
+	private ClientServiceEJB clientServiceEJB;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Pizza> pizzas = pizzaServiceEJB.findAllPizzas();
-		request.setAttribute("ListPizzas", pizzas);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/pizzas/listPizzas.jsp");
+		List<Client> clients = clientServiceEJB.findAllClients();
+		request.setAttribute("ListClients", clients);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/clients/listClients.jsp");
 		dispatcher.forward(request, response);
 	}
 

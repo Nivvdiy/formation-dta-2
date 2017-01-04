@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.PizzaServiceEJB;
-import fr.pizzeria.dao.DaoFactory;
-import fr.pizzeria.dao.JPADaoFactory;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.Pizza.Category;
 
@@ -28,8 +25,6 @@ public class UpdatePizzaController extends HttpServlet {
 	 */
 	private static final long serialVersionUID = -3802933391766510822L;
 
-	@Inject
-	private DaoFactory jpaDao;
 	@EJB
 	private PizzaServiceEJB pizzaServiceEJB;
 
