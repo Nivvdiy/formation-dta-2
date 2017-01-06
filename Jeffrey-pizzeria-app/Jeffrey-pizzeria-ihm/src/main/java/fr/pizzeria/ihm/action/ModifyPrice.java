@@ -11,6 +11,7 @@ public final class ModifyPrice extends Modify {
 
 	@Override
 	protected void modifyPizza(int option){
+		Pizza lastPizzaState = ihmUtil.getPizzaDao().findAllPizzas().get(option - 1);
 		Pizza pizza = ihmUtil.getPizzaDao().findAllPizzas().get(option - 1);
 		System.out.println("Ancien prix => " + pizza.getPrice());
 		System.out.println("Veuillez saisir le prix");
@@ -27,7 +28,7 @@ public final class ModifyPrice extends Modify {
 			}
 
 		}
-		ihmUtil.getPizzaDao().updatePizza(option, pizza);
+		ihmUtil.getPizzaDao().updatePizza(lastPizzaState, pizza);
 	}
 
 }

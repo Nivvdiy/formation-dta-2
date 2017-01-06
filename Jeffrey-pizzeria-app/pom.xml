@@ -67,6 +67,48 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>7.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>jstl</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jersey.core</groupId>
+				<artifactId>jersey-client</artifactId>
+				<version>2.25</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jersey.media</groupId>
+				<artifactId>jersey-media-json-jackson</artifactId>
+				<version>2.22</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>4.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>1.10.6.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>1.4.193</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<properties>
@@ -76,6 +118,18 @@
 	</properties>
 
 	<profiles>
+		<profile>
+			<id>dev-jpa-data</id>
+			<properties>
+				<dao.impl>dao-jpa-data-config.xml</dao.impl>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev-jdbcTemp</id>
+			<properties>
+				<dao.impl>dao-jdbctemp-config.xml</dao.impl>
+			</properties>
+		</profile>
 		<profile>
 			<id>dev-rest</id>
 			<properties>

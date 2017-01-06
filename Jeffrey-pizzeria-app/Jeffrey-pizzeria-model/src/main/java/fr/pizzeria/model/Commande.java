@@ -3,7 +3,6 @@ package fr.pizzeria.model;
 import java.sql.Date;
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -31,8 +30,8 @@ public class Commande {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private byte id;
-	@Column(columnDefinition = "enum('PREPARATION','LIVRAISON','LIVRE','ATTENTE_PREPARATION','ATTENTE_LIVREUR')")
+	private Integer id;
+	//@Column(columnDefinition = "enum('PREPARATION','LIVRAISON','LIVRE','ATTENTE_PREPARATION','ATTENTE_LIVREUR')")
 	@Enumerated(EnumType.ORDINAL)
 	private Statut statut;
 	private Date commandeDate;
@@ -59,11 +58,11 @@ public class Commande {
 	public Commande(){
 	}
 
-	public byte getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(byte id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -20,7 +20,7 @@ public class Livreur {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private byte id;
+	private Integer id;
 	private String nom;
 	private String prenom;
 
@@ -31,11 +31,11 @@ public class Livreur {
 	public Livreur(){
 	}
 
-	public byte getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(byte id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -12,10 +12,14 @@ public interface PizzaDao {
 
 	void updatePizza(String codePizza, Pizza pizza);
 
-	void deletePizza(String codePizza);
-
 	void updatePizza(int codePizza, Pizza pizza);
+	
+	void updatePizza(Pizza lastPizzaState, Pizza newPizzaState);
 
 	void deletePizza(int codePizza);
+
+	void deletePizza(String codePizza);
+	
+	void deletePizza(Pizza deletedPizza);
 
 }

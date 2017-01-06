@@ -16,7 +16,7 @@ public class PizzaTest {
 		List<Pizza> pizzas = new ArrayList<>();
 		List<Category> cat = new ArrayList<>();
 		Category.getCatList().forEach((cate, categ) -> cat.add(categ));
-		for (int i = 0; i < 120; i++) {
+		for (int i = 0; i < 5; i++) {
 			pizzas.add(new Pizza("MAR", "Margharita", (i + 1) * 4.4, cat.get((int) ((Math.random() * 4))), true));
 			System.out.println(pizzas.get(i).getCategory().toString());
 		}

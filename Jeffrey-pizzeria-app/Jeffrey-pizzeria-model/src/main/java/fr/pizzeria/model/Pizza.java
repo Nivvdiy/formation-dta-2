@@ -3,7 +3,6 @@ package fr.pizzeria.model;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -50,11 +49,11 @@ public class Pizza {
 	private static int nbPizza;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String code;
 	private String name;
 	private double price;
-	@Column(columnDefinition = "enum('VIANDE','POISSON','VEGETARIENNE','SANS_VIANDE')")
+	//@Column(columnDefinition = "enum('VIANDE','POISSON','VEGETARIENNE','SANS_VIANDE')")
 	@Enumerated(EnumType.STRING)
 	private Category category;
 	private String image;
@@ -119,11 +118,11 @@ public class Pizza {
 		this.price = price;
 	}	
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -137,6 +136,10 @@ public class Pizza {
 
 	@Override
 	public String toString() {
+		return code + ";" + name + ";" + price + ";" + category;
+	}
+
+	public String toString(boolean index) {
 		return code + ";" + name + ";" + price + ";" + category;
 	}
 

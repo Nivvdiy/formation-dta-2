@@ -50,7 +50,7 @@ public class RemovePizza extends Action {
 			return;
 		} else {
 			Pizza deletedPizza = ihmUtil.getPizzaDao().findAllPizzas().get(option - 1);
-			ihmUtil.getPizzaDao().deletePizza(option);
+			ihmUtil.getPizzaDao().deletePizza(deletedPizza);
 			System.out.println("Pizza " + deletedPizza.getName() + " supprimer avec succès");
 		}
 	}

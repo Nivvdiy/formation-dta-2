@@ -14,6 +14,7 @@ public final class ModifyAll extends Modify {
 	}
 
 	protected void modifyPizza(int option){
+		Pizza lastPizzaState = ihmUtil.getPizzaDao().findAllPizzas().get(option - 1);
 		Pizza pizza = ihmUtil.getPizzaDao().findAllPizzas().get(option - 1);
 		System.out.println("Veuillez saisir le code");
 		pizza.setCode(ihmUtil.getScanner().next());
@@ -52,7 +53,7 @@ public final class ModifyAll extends Modify {
 			}
 
 		}
-		ihmUtil.getPizzaDao().updatePizza(option, pizza);
+		ihmUtil.getPizzaDao().updatePizza(lastPizzaState, pizza);
 	}
 
 }

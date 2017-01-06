@@ -79,4 +79,15 @@ public class PizzaDaoArray implements PizzaDao {
 
 	}
 
+	@Override
+	public void updatePizza(Pizza lastPizzaState, Pizza newPizzaState) {
+		listPizzas.set(listPizzas.indexOf(lastPizzaState), newPizzaState);
+	}
+
+	@Override
+	public void deletePizza(Pizza deletedPizza) {
+		listPizzas.remove(deletedPizza);
+		Pizza.setNbPizza(Pizza.getNbPizza()-1);
+	}
+
 }

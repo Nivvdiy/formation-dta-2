@@ -18,7 +18,7 @@ public class Client {
 	private static int nbClient;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String nom;
 	private String prenom;	
 	private String ville;
@@ -39,11 +39,11 @@ public class Client {
 		this.password = password;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

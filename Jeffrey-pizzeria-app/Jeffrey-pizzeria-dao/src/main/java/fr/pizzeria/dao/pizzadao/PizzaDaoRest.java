@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaDaoRest implements PizzaDao {
-	
+
 	private Client client;
 	private WebTarget target;
 	private Builder builder;
@@ -66,6 +66,19 @@ public class PizzaDaoRest implements PizzaDao {
 	@Override
 	public void deletePizza(int codePizza) {
 		deletePizza(pizzas.get(codePizza-1).getCode());
+	}
+
+	@Override
+	public void updatePizza(Pizza lastPizzaState, Pizza newPizzaState) {
+		builder = target.path("pizzas").path(Integer.toString(lastPizzaState.getId())).request();
+		builder.put(Entity.json(newPizzaState));
+	}
+
+	@Override
+	public void deletePizza(Pizza deletedPizza) {
+		builder = target.path("pizzas").path(Integer.toString(deletedPizza.getId())).request();
+		builder.delete();
+		Pizza.setNbPizza(Pizza.getNbPizza()-1);
 	}
 
 }

@@ -103,5 +103,18 @@ public class PizzaDaoJPA implements PizzaDao {
 			}
 		});
 	}
+
+	@Override
+	public void updatePizza(Pizza lastPizzaState, Pizza newPizzaState) {
+		executeTrans((transac, em) -> em.merge(newPizzaState));
+		listPizzas.set(listPizzas.indexOf(lastPizzaState), newPizzaState);
+	}
+
+	@Override
+	public void deletePizza(Pizza deletedPizza) {
+		executeTrans((trans, em) -> em.remove(deletedPizza));
+		listPizzas.remove(deletedPizza);
+		Pizza.setNbPizza(Pizza.getNbPizza()-1);
+	}
 }
 

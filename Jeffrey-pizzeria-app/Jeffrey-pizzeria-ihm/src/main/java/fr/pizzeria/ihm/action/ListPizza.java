@@ -1,11 +1,16 @@
 package fr.pizzeria.ihm.action;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 
+@Repository
 public class ListPizza extends Action {
 
+	@Autowired
 	public ListPizza(IhmUtil ihmUtil) {
 		super("Lister les pizzas", "Liste des pizzas", ihmUtil);
 	}

@@ -129,5 +129,31 @@ public class PizzaDaoMySQL implements PizzaDao {
 		}
 
 	}
+
+	@Override
+	public void updatePizza(Pizza lastPizzaState, Pizza newPizzaState) {
+		execute((statement, connection) -> {
+			PreparedStatement updatePizzaSt = connection
+					.prepareStatement("UPDATE PIZZA SET CODE=?,NAME=?,PRICE=?,CATEGORY=? WHERE CODE = ?");
+			updatePizzaSt.setString(1, newPizzaState.getCode());
+			updatePizzaSt.setString(2, newPizzaState.getName());
+			updatePizzaSt.setDouble(3, newPizzaState.getPrice());
+			updatePizzaSt.setString(4, newPizzaState.getCategory().toString());
+			updatePizzaSt.setString(5, lastPizzaState.getCode());
+			updatePizzaSt.executeUpdate();
+		});
+		listPizzas.set(listPizzas.indexOf(lastPizzaState), newPizzaState);
+	}
+
+	@Override
+	public void deletePizza(Pizza deletedPizza) {
+		execute((statement, connection) -> {
+			PreparedStatement deletePizzaSt = connection.prepareStatement("DELETE FROM PIZZA WHERE CODE = ?");
+			deletePizzaSt.setString(1, deletedPizza.getCode());
+			deletePizzaSt.executeUpdate();
+		});
+		listPizzas.remove(deletedPizza);
+		Pizza.setNbPizza(Pizza.getNbPizza()-1);
+	}
 }
 

@@ -15,6 +15,7 @@ public final class ModifyCategory extends Modify {
 
 	@Override
 	protected void modifyPizza(int option){
+		Pizza lastPizzaState = ihmUtil.getPizzaDao().findAllPizzas().get(option - 1);
 		Pizza pizza = ihmUtil.getPizzaDao().findAllPizzas().get(option - 1);
 		System.out.println("Ancienne catégorie => " + pizza.getCategory());
 		System.out.println("Veuillez saisir le numéro de la catégorie");
@@ -35,6 +36,6 @@ public final class ModifyCategory extends Modify {
 			}
 
 		}
-			ihmUtil.getPizzaDao().updatePizza(option, pizza);
+			ihmUtil.getPizzaDao().updatePizza(lastPizzaState, pizza);
 	}
 }
