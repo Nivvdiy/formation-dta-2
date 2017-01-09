@@ -11,9 +11,9 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import fr.pizzeria.dao.performance.PerformanceDao;
 import fr.pizzeria.dao.pizzadao.PizzaDao;
 import fr.pizzeria.dao.pizzadao.PizzaDaoJPASpring;
 
@@ -28,13 +28,6 @@ public class PizzeriaAppSpringConfig {
 		JpaTransactionManager txManager = new JpaTransactionManager();
 		return txManager;
 	}
-	
-	@Bean
-	public LocalEntityManagerFactoryBean entityManagerFactory(){
-		LocalEntityManagerFactoryBean emf = new LocalEntityManagerFactoryBean();
-		emf.setPersistenceUnitName("JPAPizza");
-		return emf;
-	}
 
 	@Bean
 	public Scanner getScanner(){
@@ -44,6 +37,11 @@ public class PizzeriaAppSpringConfig {
 	@Bean
 	public PizzaDao getPizzaDao(){
 		return new PizzaDaoJPASpring();
+	}
+	
+	@Bean
+	public PerformanceDao getPerformanceDao(){
+		return new PerformanceDao();
 	}
 
 	@Bean

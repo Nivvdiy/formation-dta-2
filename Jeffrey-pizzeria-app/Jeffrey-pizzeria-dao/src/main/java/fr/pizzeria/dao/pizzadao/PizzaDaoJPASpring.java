@@ -23,25 +23,6 @@ public class PizzaDaoJPASpring implements PizzaDao {
 	}
 
 	@Override
-	public void updatePizza(String codePizza, Pizza pizza) {
-	}
-
-	@Override
-	public void deletePizza(String codePizza) {
-
-	}
-
-	@Override
-	public void updatePizza(int codePizza, Pizza pizza) {
-
-	}
-
-	@Override
-	public void deletePizza(int codePizza) {
-
-	}
-
-	@Override
 	public void updatePizza(Pizza lastPizzaState, Pizza newPizzaState) {
 		pizzaRepo.save(newPizzaState);
 	}

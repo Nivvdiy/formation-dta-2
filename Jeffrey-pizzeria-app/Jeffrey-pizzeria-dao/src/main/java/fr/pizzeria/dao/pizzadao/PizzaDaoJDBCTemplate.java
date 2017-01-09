@@ -35,31 +35,7 @@ public class PizzaDaoJDBCTemplate implements PizzaDao {
 		this.jdbcTemplate.update(req, pizza.getCategory().toString(), pizza.getCode(), pizza.getImage(), pizza.getName(), pizza.getPrice());
 		//System.out.println(this.jdbcTemplate.update(req, pizza.getCategory(), pizza.getCode(), pizza.getImage(), pizza.getName(), pizza.getPrice()));
 	}
-
-	@Override
-	public void updatePizza(String codePizza, Pizza pizza) {
-		String req = "UPDATE PIZZA SET CATEGORY = ?, CODE = ?, IMAGE = ?, NAME = ?, PRICE = ? WHERE ID = ?";
-		this.jdbcTemplate.update(req, pizza.getCategory().toString(), pizza.getCode(), pizza.getImage(), pizza.getName(), pizza.getPrice(), pizza.getId());
-	}
-
-	@Override
-	public void deletePizza(String codePizza) {
-		String req = "DELETE FROM PIZZA WHERE CODE = ?";
-		this.jdbcTemplate.update(req, codePizza);
-	}
-
-	@Override
-	public void updatePizza(int codePizza, Pizza pizza) {
-		String req = "UPDATE PIZZA SET CATEGORY = ?, CODE = ?, IMAGE = ?, NAME = ?, PRICE = ? WHERE ID = ?";
-		this.jdbcTemplate.update(req, pizza.getCategory().toString(), pizza.getCode(), pizza.getImage(), pizza.getName(), pizza.getPrice(), pizza.getId());
-	}
-
-	@Override
-	public void deletePizza(int codePizza) {
-		String req = "DELETE FROM PIZZA WHERE CODE = ?";
-		this.jdbcTemplate.update(req, listPizza.get(codePizza-1).getCode());
-	}
-
+	
 	@Override
 	public void updatePizza(Pizza lastPizzaState, Pizza newPizzaState) {
 		String req = "UPDATE PIZZA SET CATEGORY = ?, CODE = ?, IMAGE = ?, NAME = ?, PRICE = ? WHERE ID = ?";

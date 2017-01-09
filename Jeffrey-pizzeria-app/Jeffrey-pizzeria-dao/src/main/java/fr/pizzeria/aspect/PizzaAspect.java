@@ -6,15 +6,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-public class SavePizzaAspect {
+public class PizzaAspect {
 
 	@Pointcut("execution(* saveNewPizza(..))")
 	public void allSaveMethod(){}
 	@Pointcut("execution(* updatePizza(..))")
 	public void allUpdateMethod(){}
-	/*@Pointcut("execution(* fr.pizzeria.dao.pizzadao..*)")
-	public void allPizzaDao(){}*/
 	@Pointcut("allUpdateMethod() || allSaveMethod()")
 	public void setRightPizzaCode(){}
-	
+
+	@Pointcut("execution(* fr.pizzeria.dao.pizzadao.*.*(..))")
+	public void allPizzaDao(){}
 }

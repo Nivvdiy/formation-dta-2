@@ -52,7 +52,7 @@ public class Pizza {
 	private Integer id;
 	private String code;
 	private String name;
-	private double price;
+	private Double price;
 	//@Column(columnDefinition = "enum('VIANDE','POISSON','VEGETARIENNE','SANS_VIANDE')")
 	@Enumerated(EnumType.STRING)
 	private Category category;
@@ -110,11 +110,11 @@ public class Pizza {
 		this.name = name;
 	}
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}	
 

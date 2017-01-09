@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import fr.pizzeria.dao.exception.PizzaException;
@@ -78,56 +77,6 @@ public class PizzaDaoMySQL implements PizzaDao {
 			addPizzaSt.executeUpdate();
 		});
 		listPizzas.add(pizza);
-	}
-
-	@Override
-	public void updatePizza(int codePizza, Pizza pizza){
-		this.updatePizza(listPizzas.get(codePizza-1).getCode(), pizza);
-	}
-
-	@Override
-	public void deletePizza(int codePizza){
-		this.deletePizza(listPizzas.get(codePizza-1).getCode());
-	}
-
-	@Override
-	public void updatePizza(String codePizza, Pizza pizza){
-
-		listPizzas.forEach(p -> {
-			if (p.getCode().equals(codePizza)) {
-				int a = listPizzas.indexOf(p);
-				execute((statement, connection) -> {
-					PreparedStatement updatePizzaSt = connection
-							.prepareStatement("UPDATE PIZZA SET CODE=?,NAME=?,PRICE=?,CATEGORY=? WHERE CODE = ?");
-					updatePizzaSt.setString(1, pizza.getCode());
-					updatePizzaSt.setString(2, pizza.getName());
-					updatePizzaSt.setDouble(3, pizza.getPrice());
-					updatePizzaSt.setString(4, pizza.getCategory().toString());
-					updatePizzaSt.setString(5, codePizza);
-					updatePizzaSt.executeUpdate();
-				});
-				listPizzas.set(a, pizza);
-			}
-		});
-	}
-
-	@Override
-	public void deletePizza(String codePizza){
-
-		Optional<Pizza> findFirst = listPizzas.stream().filter(p -> p.getCode().equals(codePizza)).findFirst();
-
-		if (findFirst.isPresent()) {
-			Pizza pizza = findFirst.get();
-			if(pizza != null){
-				execute((statement, connection) -> {
-					PreparedStatement deletePizzaSt = connection.prepareStatement("DELETE FROM PIZZA WHERE CODE = ?");
-					deletePizzaSt.setString(1, codePizza);
-					deletePizzaSt.executeUpdate();
-				});
-				listPizzas.remove(pizza);
-			}
-		}
-
 	}
 
 	@Override

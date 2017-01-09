@@ -42,44 +42,6 @@ public class PizzaDaoArray implements PizzaDao {
 	}
 
 	@Override
-	public void updatePizza(String codePizza, Pizza pizza) {
-
-		listPizzas.forEach(p -> {
-			if (p.getCode().equals(codePizza)) {
-				int a = listPizzas.indexOf(p);
-				listPizzas.set(a, pizza);
-			}
-		});
-
-	}
-
-	@Override
-	public void updatePizza(int codePizza, Pizza pizza){
-		this.updatePizza(listPizzas.get(codePizza-1).getCode(), pizza);
-	}
-
-	@Override
-	public void deletePizza(int codePizza){
-		this.deletePizza(listPizzas.get(codePizza-1).getCode());
-	}
-
-	@Override
-	public void deletePizza(String codePizza) {
-
-		Optional<Pizza> findFirst = listPizzas.stream().filter(p -> p.getCode().equals(codePizza)).findFirst();
-
-		if (findFirst.isPresent()) {
-			Pizza pizza = findFirst.get();
-			listPizzas.remove(pizza);
-		}
-
-		int nbPizza = Pizza.getNbPizza();
-		nbPizza--;
-		Pizza.setNbPizza(nbPizza);
-
-	}
-
-	@Override
 	public void updatePizza(Pizza lastPizzaState, Pizza newPizzaState) {
 		listPizzas.set(listPizzas.indexOf(lastPizzaState), newPizzaState);
 	}

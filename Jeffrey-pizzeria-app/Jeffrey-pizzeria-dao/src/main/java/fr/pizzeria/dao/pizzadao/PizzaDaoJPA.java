@@ -55,7 +55,6 @@ public class PizzaDaoJPA implements PizzaDao {
 
 	}
 
-
 	@Override
 	public List<Pizza> findAllPizzas() {
 		reloadPizza();
@@ -66,42 +65,6 @@ public class PizzaDaoJPA implements PizzaDao {
 	public void saveNewPizza(Pizza pizza){
 		executeTrans((transac, em) -> em.persist(pizza));
 		listPizzas.add(pizza);
-	}
-
-	@Override
-	public void updatePizza(int codePizza, Pizza pizza){
-		this.updatePizza(listPizzas.get(codePizza-1).getCode(), pizza);
-	}
-
-	@Override
-	public void deletePizza(int codePizza){
-		this.deletePizza(listPizzas.get(codePizza-1).getCode());
-	}
-
-	@Override
-	public void updatePizza(String codePizza, Pizza pizza){
-
-
-		listPizzas.forEach(p -> {
-			if (p.getCode().equals(codePizza)) {
-				int a = listPizzas.indexOf(p);
-				executeTrans((transac, em) -> em.merge(pizza));
-				listPizzas.set(a, pizza);
-			}
-		});
-	}
-
-	@Override
-	public void deletePizza(String codePizza){
-		executeTrans((trans, em) -> {
-			TypedQuery<Pizza> query = em.createQuery("SELECT p FROM Pizza p WHERE p.code = :code", Pizza.class);
-			query.setParameter("code", codePizza);
-			Pizza p = query.getSingleResult();
-			if(p != null){
-				em.remove(p);
-				listPizzas.remove(p);
-			}
-		});
 	}
 
 	@Override

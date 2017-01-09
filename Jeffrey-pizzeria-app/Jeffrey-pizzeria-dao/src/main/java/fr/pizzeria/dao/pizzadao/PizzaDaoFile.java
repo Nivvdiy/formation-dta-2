@@ -73,47 +73,6 @@ public class PizzaDaoFile implements PizzaDao {
 		}
 	}
 
-	@Override
-	public void updatePizza(int codePizza, Pizza pizza){
-		this.updatePizza(listPizzas.get(codePizza-1).getCode(), pizza);
-	}
-
-	@Override
-	public void deletePizza(int codePizza){
-		this.deletePizza(listPizzas.get(codePizza-1).getCode());
-	}
-
-	@Override
-	public void updatePizza(String codePizza, Pizza pizza) {
-
-		listPizzas.forEach(p -> {
-			if (p.getCode().equals(codePizza)) {
-				int a = listPizzas.indexOf(p);
-				listPizzas.set(a, pizza);
-				remove(codePizza);
-				add(pizza);
-			}
-		});
-
-	}
-
-	@Override
-	public void deletePizza(String codePizza) {
-
-		Optional<Pizza> findFirst = listPizzas.stream().filter(p -> p.getCode().equals(codePizza)).findFirst();
-
-		if (findFirst.isPresent()) {
-			Pizza pizza = findFirst.get();
-			listPizzas.remove(pizza);
-			remove(codePizza);
-		}
-
-		int nbPizza = Pizza.getNbPizza();
-		nbPizza--;
-		Pizza.setNbPizza(nbPizza);
-
-	}
-
 	public void remove(String pizzaCode) {
 		File fichier = new File("data/" + pizzaCode + ".txt");
 		if (fichier.delete()) {
