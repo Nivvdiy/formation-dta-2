@@ -15,12 +15,12 @@ public class Ingredient {
 	private Integer id;
 	private String name;
 	private Double price;
-	private Byte quantity;
+	private Double quantity;
 	
 	public Ingredient(){
 	}
 
-	public Ingredient(String name, Double price, Byte quantity) {
+	public Ingredient(String name, Double price, Double quantity) {
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
@@ -50,11 +50,11 @@ public class Ingredient {
 		this.price = price;
 	}
 
-	public Byte getQuantity() {
+	public Double getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Byte quantity) {
+	public void setQuantity(Double quantity) {
 		this.quantity = quantity;
 	}
 	

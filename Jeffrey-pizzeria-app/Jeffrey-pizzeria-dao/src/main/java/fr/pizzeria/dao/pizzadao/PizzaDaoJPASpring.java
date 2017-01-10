@@ -3,10 +3,12 @@ package fr.pizzeria.dao.pizzadao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.repos.PizzaRepository;
 
+@Component
 public class PizzaDaoJPASpring implements PizzaDao {
 	
 	@Autowired
